@@ -27,17 +27,23 @@
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
 
-# Feature Tracking
+# Feature Tracking Lab06:
 
-Name of feature: ________________________________
 
-Estimate of time needed to complete: _____
+![Lab06 Whiteboard](src/img/Lab06%20Whiteboard.png)
 
-Start time: _____
+
+Name of feature: Locations
+
+Estimate of time needed to complete:1 hr
+
+Start time: 3:36 PST
 
 Finish time: _____
 
 Actual time needed to complete: _____
+
+
 
 
 
