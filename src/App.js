@@ -11,7 +11,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pokemonData: [],
       city: '',
       cityData: {},
       error: false,
@@ -62,7 +61,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <h1>API CALLS</h1>
+        <h1>PLEASE ENTER A CITY TO SEARCH FOR</h1>
 
         <form onSubmit={this.getCityData}>
           <label > Enter in a City:
@@ -75,7 +74,8 @@ class App extends React.Component {
         {
           this.state.error
             ? <p>{this.state.errorMessage}</p>
-            : <p>{this.state.cityData.display_name}</p>
+            : <p>{this.state.cityData.display_name}
+            <ul>{this.state.cityData.lat}, {this.state.cityData.lon};</ul></p>
         }
 
 
