@@ -70,13 +70,15 @@ class App extends React.Component {
           <button type="submit">Explore!</button>
         </form>
 
-        {/* TERNARY - WTF  */}
+        {/* https://tiles.locationiq.com/v3/<theme>/<type>.json?key=<access_token> */}
+
         {
           this.state.error
             ? <p>{this.state.errorMessage}</p>
             : <p>{this.state.cityData.display_name}
-            <ul>{this.state.cityData.lat}, {this.state.cityData.lon};</ul></p>
+            <ul><img src={`https://tiles.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=12&size=400x400`} alt="Map of the city" /> {this.state.cityData.lat}, {this.state.cityData.lon};</ul></p>
         }
+        
 
 
       </>
