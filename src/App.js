@@ -61,7 +61,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <h1>PLEASE ENTER A CITY TO SEARCH FOR</h1>
+        <h1>ENTER A CITY TO SEARCH FOR</h1>
 
         <form onSubmit={this.getCityData}>
           <label > Enter in a City:
@@ -76,7 +76,11 @@ class App extends React.Component {
           this.state.error
             ? <p>{this.state.errorMessage}</p>
             : <p>{this.state.cityData.display_name}
-            <ul><img src={`https://tiles.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=12&size=400x400`} alt="Map of the city" /> {this.state.cityData.lat}, {this.state.cityData.lon};</ul></p>
+                <ul>
+                  <img src={`https://tiles.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=12&size=400x400`} alt="Map of the city"/><br></br>
+                  {this.state.cityData.lat} {this.state.cityData.lon}
+                </ul>
+              </p>
         }
         
 
