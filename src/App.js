@@ -24,8 +24,24 @@ class App extends React.Component {
     })
   }
 
-  // ** async/await - handle our asynchronous code
-  // ** try/catch - handle our errors - TRY resolve our successful promises & CATCH handle rejected promise
+  // *** Create connection for frontend to backend for Weather *** //
+  handleWeather = async (event) => {
+    event.preventDefault();
+    try {
+      let url = `${process.env.REACT_APP_SERVER}/weather?searchquery=${this.state.city}`
+      let cityData = await axios.get(url);
+      this.setState({
+        weatherData: weatherData.data,
+        error: false
+      });
+    } catch (error) {
+
+      // TODO: Set state with the error boolean and the error message
+      this.setState({
+        error: true,
+        errorMessage: error.message
+    })
+
 
   getCityData = async (event) => {
     event.preventDefault();
