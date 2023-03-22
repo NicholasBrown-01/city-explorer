@@ -1,16 +1,16 @@
 import React from 'react';
 import axios from 'axios';
-
+import Weather from './Weather';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pokemonData: [],
       city: '',
       cityData: {},
       error: false,
-      errorMessage: ''
+      errorMessage: '',
+      weatherData: []
     }
   }
 
@@ -20,29 +20,31 @@ class App extends React.Component {
     })
   }
 
-  // ** async/await - handle our asynchronous code
-  // ** try/catch - handle our errors - TRY resolve our successful promises & CATCH handle rejected promise
 
   getCityData = async (event) => {
     event.preventDefault();
 
     try {
-      // TODO: Use axios to get the data from LocationIQ - using city in state
+
       let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`
 
       let cityDataFromAxios = await axios.get(url);
 
-      console.log(cityDataFromAxios.data[0])
 
-      // TODO: Set State with the data that comes back from axios & set error boolean to false
       this.setState({
         cityData: cityDataFromAxios.data[0],
         error: false
       });
 
+      // TODO: CALL WEATHER HANDLER
+      let lat = cityDataFromAxios.data[0].lat;
+      let lon = cityDataFromAxios.data[0].lon;
+
+       this.handleGetWeather(lat, lon);
+
+
     } catch (error) {
 
-      // TODO: Set state with the error boolean and the error message
       this.setState({
         error: true,
         errorMessage: error.message
@@ -51,8 +53,27 @@ class App extends React.Component {
 
   }
 
-  // *** MAP PORTION OF YOUR LAB IMG SRC POINTS TO THIS URL: 
-  // *** https://maps.locationiq.com/v3/staticmap?key=<YOUR API KEY>&center=<CITY'S LAT>,<CITY'S LON>&zoom=13
+  handleGetWeather = async (lat, lon) => {
+    try {
+      // TODO: Call my server and pass in the lat, lon, and city name
+      // http://localhost:3001/weather?lat=432.0&lon=343.3234&searchQuery=Seattle
+      let url = `${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.state.city}&lat=${lat}&lon=${lon}`;
+
+      let weatherDataFromAxios = await axios.get(url);
+
+      console.log('Weather: ', weatherDataFromAxios.data)
+
+      this.setState({
+        weatherData: weatherDataFromAxios.data
+      })
+
+      // TODO: Create a seperate Component pass that down as props
+
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
 
   render() {
     return (
@@ -70,7 +91,14 @@ class App extends React.Component {
         {
           this.state.error
             ? <p>{this.state.errorMessage}</p>
-            : <p>{this.state.cityData.display_name}</p>
+            : Object.keys(this.state.cityData).length > 0 &&
+            <>
+              <p>{this.state.cityData.display_name}</p>
+              <p>Lat: {this.state.cityData.lat}</p>
+              <p>Lon: {this.state.cityData.lon}</p>
+
+              <Weather weatherData={this.state.weatherData} />
+            </>
         }
 
 
@@ -80,40 +108,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-//  <form >
-{/* <button type='submit' onClick={this.handleGetPokemonData}>Gotta Catch them all!</button>
-</form>
-
-<ul>
-  {this.state.pokemonData.map((pokemon, i) => <li key={i}>{pokemon.name}</li>)}
-</ul> */}
-
-//  // *** GET POKEMAN DATA
-
-//  handleGetPokemonData = async (event) => {
-//   event.preventDefault();
-
-//   // TODO: USE AXIOS TO MAKE A CALL OUT TO THE POKEMON API
-//   let pokemonData = await axios.get('https://pokeapi.co/api/v2/pokemon/');
-
-//   // ** .data - where axios stores the info
-//   // ** .results - where the api stores the actual pokemon info
-
-//   console.log(pokemonData.data.results);
-
-//   // TODO: SET THAT DATA INTO STATE
-//   this.setState({
-//     pokemonData: pokemonData.data.results
-//   })
-
-// }
