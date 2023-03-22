@@ -29,7 +29,7 @@ class App extends React.Component {
     event.preventDefault();
     try {
       let url = `${process.env.REACT_APP_SERVER}/weather?searchquery=${this.state.city}`
-      let cityData = await axios.get(url);
+      let weatherData = await axios.get(url);
       this.setState({
         weatherData: weatherData.data,
         error: false
