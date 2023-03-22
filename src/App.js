@@ -73,7 +73,8 @@ class App extends React.Component {
 
       }
 
-      // *** MAP PORTION OF YOUR LAB IMG SRC POINTS TO THIS URL: 
+      // *** MAP PORTION OF YOUR LAB IMG SRC POINTS TO THIS URL added comment
+       
       // *** https://maps.locationiq.com/v3/staticmap?key=<YOUR API KEY>&center=<CITY'S LAT>,<CITY'S LON>&zoom=13
 
       render() {
