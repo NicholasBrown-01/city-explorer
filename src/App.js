@@ -21,27 +21,6 @@ class App extends React.Component {
     })
   }
 
-  // *** Create connection for frontend to backend for Weather *** //
-  handleWeather = async (event) => {
-    event.preventDefault();
-    try {
-      let url = `${process.env.REACT_APP_SERVER}/weather?searchquery=${this.state.city}`
-      let weatherData = await axios.get(url);
-      this.setState({
-        weatherData: weatherData.data,
-        error: false
-      });
-    } catch (error) {
-
-      // TODO: Set state with the error boolean and the error message
-      this.setState({
-        error: true,
-        errorMessage: error.message
-      });
-    }
-  }
-
-
       getCityData = async (event) => {
         event.preventDefault();
 
@@ -59,6 +38,10 @@ class App extends React.Component {
             error: false
           });
 
+          let lat = cityDataFromAxios.data[0].lat;
+          let lon = cityDataFromAxios.data[0].lon;
+            this.handleGetWeather(lat, lon);
+
         } catch (error) {
 
           // TODO: Set state with the error boolean and the error message
@@ -69,6 +52,26 @@ class App extends React.Component {
         }
 
       }
+
+        // *** Create connection for frontend to backend for Weather *** //
+  handleGetWeather = async (lat, lon) => {
+    try {
+      let url = `${process.env.REACT_APP_SERVER}/weather?searchQuery${this.state.city}&lat=${lat}&lan=${lon}`
+      let weatherDataFromAxios = await axios.get(url);
+
+      this.setState({
+        weatherData: weatherDataFromAxios.data,
+        error: false
+      });
+    } catch (error) {
+
+      // TODO: Set state with the error boolean and the error message
+      this.setState({
+        error: true,
+        errorMessage: error.message
+      });
+    }
+  }
 
 
       render() {
