@@ -4,9 +4,6 @@ import axios from 'axios';
 import React from 'react';
 
 
-//Access Token:pk.1bdaa9a4a72d772959ed56f56c24f01e
-
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -73,9 +70,6 @@ class App extends React.Component {
 
       }
 
-      // *** MAP PORTION OF YOUR LAB IMG SRC POINTS TO THIS URL added comment
-       
-      // *** https://maps.locationiq.com/v3/staticmap?key=<YOUR API KEY>&center=<CITY'S LAT>,<CITY'S LON>&zoom=13
 
       render() {
         return (
@@ -88,8 +82,6 @@ class App extends React.Component {
               </label>
               <button type="submit">Explore!</button>
             </form>
-
-            {/* https://tiles.locationiq.com/v3/<theme>/<type>.json?key=<access_token> */}
 
             {
               this.state.error
