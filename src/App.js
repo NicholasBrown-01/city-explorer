@@ -69,8 +69,6 @@ class App extends React.Component {
         weatherData: weatherDataFromAxios.data
       })
 
-  // TODO: Create a separate Component and pass down info as props
-
     } catch (error) {
         console.log(error.message);
     }
