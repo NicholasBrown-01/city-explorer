@@ -24,54 +24,23 @@
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
 ## Credit and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+<!-- Thank you TA's!! -->
 
 
-# Feature Tracking Lab06:
+# Feature Tracking Lab09:
+
+![Alt text](src/img/Lab09%20Snip.png)
 
 
-![Lab06 Whiteboard](src/img/Lab06%20Whiteboard.png)
+Name of feature: Components and Frontend to Backend APIs
 
-
-Name of feature: Locations
-
-Estimate of time needed to complete:1 hr
+Estimate of time needed to complete: 4 hr
 
 Start time: 3:36 PST
 
-Finish time: _____
+Finish time: 8:30 PST
 
-Actual time needed to complete: _____
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Actual time needed to complete: 5 hrs
 
 
 
