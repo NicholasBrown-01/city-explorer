@@ -4,6 +4,7 @@ import axios from 'axios';
 import React from 'react';
 import Weather from './Weather';
 import Movies from './Movies';
+import Movie from './Movie';
 
 
 class App extends React.Component {
@@ -29,18 +30,16 @@ class App extends React.Component {
     event.preventDefault();
 
     try {
-      // *** Use axios to get the data from LocationIQ - using city in state ***
+
       let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`
 
       let cityDataFromAxios = await axios.get(url);
 
-      // *** Set State with the data that comes back from axios & set error boolean to false ***
       this.setState({
         cityData: cityDataFromAxios.data[0],
         error: false
       });
 
-      // *** Call Weather Handles ***
       let lat = cityDataFromAxios.data[0].lat;
       let lon = cityDataFromAxios.data[0].lon;
 
@@ -49,7 +48,6 @@ class App extends React.Component {
 
     } catch (error) {
 
-      // *** Set state with the error boolean and the error message ***
       this.setState({
         error: true,
         errorMessage: error.message
@@ -58,7 +56,6 @@ class App extends React.Component {
 
   }
 
-  // *** Create connection for frontend to backend for Weather *** //
   handleGetWeather = async (lat, lon) => {
    
     try {
@@ -92,9 +89,6 @@ class App extends React.Component {
     }
   }
 
-
-
-
   render() {
     return (
       <>
@@ -119,8 +113,6 @@ class App extends React.Component {
               <Weather weatherData={this.state.weatherData} />
               <Movies movieData={this.state.movieData} />
             </div>
-
-
         }
       </>
     )
