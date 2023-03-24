@@ -4,8 +4,6 @@ import axios from 'axios';
 import React from 'react';
 import Weather from './Weather';
 import Movies from './Movies';
-import Movie from './Movie';
-
 
 class App extends React.Component {
   constructor(props) {
